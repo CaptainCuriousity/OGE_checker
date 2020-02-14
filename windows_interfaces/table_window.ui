@@ -39,27 +39,27 @@
   <widget class="QPushButton" name="xlsx_button">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>480</x>
      <y>520</y>
-     <width>111</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Импорт в xlsx</string>
+    <string>Экспорт в xlsx</string>
    </property>
   </widget>
   <widget class="QPushButton" name="csv_button">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>480</x>
      <y>570</y>
-     <width>111</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Имопрт в csv</string>
+    <string>Экспорт в csv</string>
    </property>
   </widget>
   <widget class="QPushButton" name="add_student_button">
@@ -99,6 +99,19 @@
    </property>
    <property name="text">
     <string>Удалить таблицу</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="update_balls_button">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>520</y>
+     <width>211</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Обновить баллы</string>
    </property>
   </widget>
  </widget>
