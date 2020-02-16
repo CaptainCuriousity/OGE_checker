@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QWidget, QTa
 from PyQt5.QtWidgets import QFileDialog
 from windows_interfaces.main_window import Ui_MainWindow
 from windows_interfaces.table_window import Ui_TableForm
+from windows_interfaces.info_window import Ui_info_window
 import sys
 import os
 import csv
@@ -46,13 +47,19 @@ class ExamCheckerMainForm(QMainWindow, Ui_MainWindow):
         self.table_window.show()
 
     def show_info(self):
-        # TODO: показ информации о работе с программой
-        pass
+        self.info_widget = InfoWidget()
+        self.info_widget.show()
 
 
-class InfoWidget(QWidget):
+class InfoWidget(QWidget, Ui_info_window):
     def __init__(self):
         super().__init__()
+        self.setupUi(self)
+
+        with open("readme.txt", mode="r", encoding="utf-8") as file:
+            text = file.read()
+
+        self.information_plaintext.setPlainText(text)
 
 
 class ExamCheckerWidget(QWidget, Ui_TableForm):
@@ -139,16 +146,14 @@ class ExamCheckerWidget(QWidget, Ui_TableForm):
                     part_2_data.append(0)
                 elif all_tasks_data[j] == "1б" or all_tasks_data[j] == "1":
                     part_2_data.append(1)
-                elif all_tasks_data[j] == "2б" or all_tasks_data[j] == "2":
+                elif (all_tasks_data[j] == "2б" or all_tasks_data[j] == "2") and not 14 <= j <= 16:
                     part_2_data.append(2)
-                elif all_tasks_data[j] == "3б" or all_tasks_data[j] == "3" and 14 <= j <= 16:
-                    part_2_data.append(3)
                 else:
                     part_2_data.append(0)
             task13_ball = [part_2_data[0], part_2_data[1]]
             task14_ball = [part_2_data[2], part_2_data[3], part_2_data[4]]
             task15_ball = [part_2_data[5], part_2_data[6]]
-            balls += max(task13_ball) + max(task14_ball) + max(task15_ball)
+            balls += max(task13_ball) + sum(task14_ball) + max(task15_ball)
 
             mark = None
             if 0 <= balls <= 3:
